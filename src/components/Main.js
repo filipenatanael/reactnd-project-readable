@@ -40,7 +40,7 @@ class Main extends React.Component {
   render() {
     const { classes, theme } = this.props;
     const { open } = this.state;
-    
+
     return (
       <div className={classes.root}>
         <NavbarHeader
@@ -74,6 +74,7 @@ class Main extends React.Component {
           </List>
           <Divider />
         </Drawer>
+
         <main
           className={classNames(classes.content, {
             [classes.contentShift]: open,
