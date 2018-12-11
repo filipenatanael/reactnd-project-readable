@@ -8,8 +8,10 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+
 import NavbarHeader from './NavbarHeader';
 import Categories from './Categories';
+import PostsList from './PostsList';
 
 const drawerWidth = 240;
 
@@ -34,7 +36,6 @@ class Main extends React.Component {
       <div className={classes.root}>
         <NavbarHeader
           headerTitle={'Reactnd Project Readable'}
-          classes={classes}
           open={open}
           onHandleDrawerOpen={this.handleDrawerOpen}
           drawerWidth={drawerWidth}
@@ -67,12 +68,7 @@ class Main extends React.Component {
           })}
         >
           <div className={classes.drawerHeader} />
-          <Typography paragraph>
-            Paragraph 1
-          </Typography>
-          <Typography paragraph>
-            Paragraph 2
-          </Typography>
+          <PostsList {...this.props} />
         </main>
       </div>
     );
