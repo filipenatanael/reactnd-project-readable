@@ -12,8 +12,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 class NavbarHeader extends Component {
   render() {
-    const { classes, theme } = this.props;
-    const { headerTitle, drawerWidth, open, onHandleDrawerOpen } = this.props;
+    const { classes } = this.props;
+    const { headerTitle, open, onHandleDrawerOpen } = this.props;
     return (
       <div>
         <CssBaseline />
