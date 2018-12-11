@@ -33,9 +33,11 @@ class Main extends React.Component {
     return (
       <div className={classes.root}>
         <NavbarHeader
+          headerTitle={'Reactnd Project Readable'}
           classes={classes}
           open={open}
           onHandleDrawerOpen={this.handleDrawerOpen}
+          drawerWidth={drawerWidth}
         />
 
         <Drawer
