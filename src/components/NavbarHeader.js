@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -8,9 +9,11 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
+
 class NavbarHeader extends Component {
   render() {
-    const { classes, open, onHandleDrawerOpen } = this.props;
+    const { classes, theme } = this.props;
+    const { headerTitle, drawerWidth, open, onHandleDrawerOpen } = this.props;
     return (
       <div>
         <CssBaseline />
@@ -30,7 +33,7 @@ class NavbarHeader extends Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" noWrap>
-              Reactnd Project Readable
+              {headerTitle}
             </Typography>
           </Toolbar>
         </AppBar>
@@ -39,10 +42,41 @@ class NavbarHeader extends Component {
   }
 }
 
+
 NavbarHeader.propTypes = {
   classes: PropTypes.object.isRequired,
+  theme: PropTypes.object.isRequired,
+  drawerWidth: PropTypes.number.drawerWidth,
   open: PropTypes.bool.isRequired,
-  onHandleDrawerOpen: PropTypes.func.isRequired
+  onHandleDrawerOpen: PropTypes.func.isRequired,
 };
 
-export default NavbarHeader;
+
+const styles = (theme, drawerWidth) => ({
+  root: {
+    display: 'flex',
+  },
+  appBar: {
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  menuButton: {
+    marginLeft: 12,
+    marginRight: 20,
+  },
+  hide: {
+    display: 'none',
+  },
+});
+
+export default withStyles(styles, { withTheme: true })(NavbarHeader);

@@ -10,6 +10,7 @@ class App extends Component {
       <div>
         <Switch>
           <Route path="/" exact component={Main} />
+          <Route path="/:category" exact component={props => <Main {...props} />} />
         </Switch>
       </div>
       </BrowserRouter>
