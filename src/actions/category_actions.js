@@ -16,3 +16,11 @@ const fetchCategoriesSuccess = (categories) => {
     payload: categories
   }
 }
+
+export function fetchCategoryPosts(category) {
+  return dispatch => {
+    axios.get(`http://localhost:5001/${category}/posts`)
+    .then(res => dispatch({ type: 'FETCH_CATEGORY_POSTS', payload: res.data }))
+    .catch(error => console.error(error))
+  }
+}
