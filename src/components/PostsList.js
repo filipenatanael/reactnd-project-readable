@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { connect } from 'react-redux';
 import { fetchCategoryPosts } from '../actions';
-import RecipeReviewCard from './RecipeReviewCard';
+import Post from './Post';
 
 class PostsList extends Component {
   componentWillMount() {
@@ -26,7 +26,7 @@ class PostsList extends Component {
       <List>
         {_.map(posts, post => {
           return (
-            <RecipeReviewCard />
+            <Post post={post} />
           )
         })}
       </List>
