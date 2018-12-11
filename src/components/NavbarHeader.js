@@ -42,6 +42,7 @@ class NavbarHeader extends Component {
   }
 }
 
+
 NavbarHeader.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
@@ -52,6 +53,9 @@ NavbarHeader.propTypes = {
 
 
 const styles = (theme, drawerWidth) => ({
+  root: {
+    display: 'flex',
+  },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
