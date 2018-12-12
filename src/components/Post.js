@@ -20,35 +20,6 @@ function timestampToDate(unixTimestamp) {
     return date.toDateString();
 }
 
-const styles = theme => ({
-  card: {
-    maxWidth: 400,
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-  actions: {
-    display: 'flex',
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    marginLeft: 'auto',
-    [theme.breakpoints.up('sm')]: {
-      marginRight: -8,
-    },
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
-});
-
 class Post extends React.Component {
   state = { expanded: false };
 
@@ -59,7 +30,6 @@ class Post extends React.Component {
   render() {
     const { classes } = this.props;
     const { post } = this.props;
-
     return (
       <Card className={classes.card}>
         <CardHeader
@@ -109,22 +79,37 @@ class Post extends React.Component {
   }
 }
 
+const styles = theme => ({
+  card: {
+    maxWidth: '100%',
+  },
+  media: {
+    height: 0,
+    paddingTop: '56.25%', // 16:9
+  },
+  actions: {
+    display: 'flex',
+  },
+  expand: {
+    transform: 'rotate(0deg)',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    marginLeft: 'auto',
+    [theme.breakpoints.up('sm')]: {
+      marginRight: -8,
+    },
+  },
+  expandOpen: {
+    transform: 'rotate(180deg)',
+  },
+  avatar: {
+    backgroundColor: red[500],
+  },
+});
+
 Post.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(Post);
-
-
-
-// <CardHeader
-//   avatar={
-//     <Avatar aria-label="Recipe" className={classes.avatar}>
-//       R
-//     </Avatar>
-//   }
-//   action={
-//     <IconButton>
-//       <MoreVertIcon />
-//     </IconButton>
-//   }

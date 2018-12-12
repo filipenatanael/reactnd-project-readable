@@ -66,13 +66,15 @@ class Main extends React.Component {
             [classes.contentShift]: open,
           })}
         >
-          <div className={classes.drawerHeader} />
+
           <PostsList {...this.props} />
         </main>
       </div>
     );
   }
 }
+
+//   <div className={classes.drawerHeader} />
 
 Main.propTypes = {
   classes: PropTypes.object.isRequired,
