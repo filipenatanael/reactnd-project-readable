@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-// import ListItemIcon from '@material-ui/core/ListItemIcon';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
-// import MailIcon from '@material-ui/icons/Mail';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import _ from 'lodash';
 import {
   fetchCategories,
   fetchCategoryPosts
@@ -22,25 +19,30 @@ class Categories extends Component {
 
   render() {
     const { categories, fetchCategoryPosts } = this.props;
+
     if (categories) {
       return (
         <List>
-          {_.map(categories, category => {
-            return (
-              <ListItem button key={category.path}>
-
-                <Link to={`/${category.path}`}
-                      onClick={() => fetchCategoryPosts(category.path)}>
+          <ListItem>
+            <Link to="/">
+              <ListItemText primary="All" />
+            </Link>
+          </ListItem>
+        {_.map(categories, category => {
+          return (
+            <ListItem button key={category.path}>
+              <Link to={`/${category.path}`}
+                    onClick={() => fetchCategoryPosts(category.path)}>
                 <ListItemText primary={category.name} />
-                </Link>
-              </ListItem>
-            )
-          })}
+              </Link>
+            </ListItem>
+          )
+        })}
         </List>
       );
     }
     return (
-        <div>The Component is Loading...</div>
+      <div>The Component is Loading...</div>
     );
   }
 }
