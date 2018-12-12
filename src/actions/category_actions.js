@@ -10,7 +10,6 @@ export function fetchCategories() {
 }
 
 const fetchCategoriesSuccess = (categories) => {
-  console.log('From Arctions: ', categories);
   return {
     type: 'FETCH_CATEGORIES',
     payload: categories
