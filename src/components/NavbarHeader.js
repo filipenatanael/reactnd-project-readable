@@ -42,20 +42,15 @@ class NavbarHeader extends Component {
   }
 }
 
-
 NavbarHeader.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-  drawerWidth: PropTypes.number.drawerWidth,
   open: PropTypes.bool.isRequired,
+  drawerWidth: PropTypes.number.isRequired,
   onHandleDrawerOpen: PropTypes.func.isRequired,
 };
 
-
 const styles = (theme, drawerWidth) => ({
-  root: {
-    display: 'flex',
-  },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
@@ -76,7 +71,7 @@ const styles = (theme, drawerWidth) => ({
   },
   hide: {
     display: 'none',
-  },
+  }
 });
 
 export default withStyles(styles, { withTheme: true })(NavbarHeader);

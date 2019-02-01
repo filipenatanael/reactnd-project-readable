@@ -9,7 +9,6 @@ import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import red from '@material-ui/core/colors/red';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Comment from '@material-ui/icons/Comment';
 import Star from '@material-ui/icons/Star';
@@ -82,10 +81,7 @@ class Post extends React.Component {
 const styles = theme => ({
   card: {
     maxWidth: '100%',
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
+    backgroundColor: '#fff7e6'
   },
   actions: {
     display: 'flex',
@@ -102,10 +98,7 @@ const styles = theme => ({
   },
   expandOpen: {
     transform: 'rotate(180deg)',
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
+  }
 });
 
 Post.propTypes = {

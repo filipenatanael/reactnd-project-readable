@@ -4,7 +4,7 @@ axios.defaults.headers.common['Authorization'] = { 'Authorization': 'whatever-yo
 
 export function fetchPosts() {
   return dispatch => {
-    axios.get(`http://localhost:5001/posts`)
+    axios.get(`http://localhost:3001/posts`)
     .then(res => dispatch(fetchPostsSuccess(res.data)));
   }
 }

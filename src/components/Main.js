@@ -28,7 +28,7 @@ class Main extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes, theme, match } = this.props;
     const { open } = this.state;
 
     return (
@@ -67,14 +67,12 @@ class Main extends React.Component {
           })}
         >
 
-          <PostsList {...this.props} />
+          <PostsList match={match} />
         </main>
       </div>
     );
   }
 }
-
-//   <div className={classes.drawerHeader} />
 
 Main.propTypes = {
   classes: PropTypes.object.isRequired,
@@ -84,27 +82,6 @@ Main.propTypes = {
 const styles = theme => ({
   root: {
     display: 'flex',
-  },
-  appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 20,
-  },
-  hide: {
-    display: 'none',
   },
   drawer: {
     width: drawerWidth,
