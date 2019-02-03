@@ -7,8 +7,10 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { MemoryRouter, withRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import reducer from '../reducers/index'
+
 import Main from '../components/Main';
 import NavbarHeader from '../components/NavbarHeader';
+import Post from '../components/Post';
 
 /* To enable Redux DevTools Extension */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -31,7 +33,7 @@ storiesOf('Main', module)
       <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
     </Provider>
   ))
-  .add('Drawable behavior', () => <TMain />)
+  .add('drawable behavior', () => <TMain />)
 
 storiesOf('NavbarHeader', module)
   .addDecorator(story => <Provider store={store}>{story()}</Provider>)
@@ -39,3 +41,19 @@ storiesOf('NavbarHeader', module)
     <NavbarHeader
       headerTitle={'Reactnd Project Readable'}
       drawerWidth={drawerWidth}></NavbarHeader>);
+
+
+const post = {
+  title: 'Reactnd Project Readable - Testing',
+  author: 'Filipe Natanael',
+  timestamp: '1468479767190',
+  category: 'redux',
+  body: 'Just kidding. It takes more than 10 minutes to learn technology.',
+  voteScore: -5,
+}
+
+storiesOf('Post', module)
+  .add('passing title', () => (
+    <Post
+      post={post}></Post>
+  ));
