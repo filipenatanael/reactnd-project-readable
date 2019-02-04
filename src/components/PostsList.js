@@ -32,7 +32,9 @@ class PostsList extends Component {
 
       if (posts.length > 0) {
         const orderedPosts = _.sortBy(posts, this.props.postsOrder).reverse();
-        return _.map(orderedPosts, post => <Grid item xs={6}><Post key={post.id} post={post} /></Grid>);
+        return (
+          _.map(orderedPosts, post => <Grid key={post.id} item xs={6}><Post key={post.id} post={post} /></Grid>)
+        );
       }
       return <div>Loading Posts...</div>
     }
@@ -40,6 +42,7 @@ class PostsList extends Component {
     render(){
       const { postSortOrder } = this.props;
       const { classes } = this.props;
+      
       return(
         <div className={classes.root}>
         <Grid container spacing={24}>
