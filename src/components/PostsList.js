@@ -5,14 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Paper from '@material-ui/core/Paper';
-import { connect } from 'react-redux';
 import _ from 'lodash';
-import {
-  fetchPosts,
-  fetchCategoryPosts,
-  postSortOrder
-} from '../actions';
-
 import Post from './Post';
 
 class PostsList extends Component {
@@ -42,7 +35,7 @@ class PostsList extends Component {
     render(){
       const { postSortOrder } = this.props;
       const { classes } = this.props;
-      
+
       return(
         <div className={classes.root}>
         <Grid container spacing={24}>
@@ -84,15 +77,4 @@ PostsList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-function mapStateToProps (state) {
-    const postsFiltered = _.filter(state.posts, post => !post.deleted);
-    return {
-      posts: postsFiltered,
-      postsOrder: state.postsOrder
-    }
-  }
-
-export default withStyles(styles)(connect(mapStateToProps, {
-  fetchPosts,
-  fetchCategoryPosts,
-  postSortOrder})(PostsList));
+export default withStyles(styles)(PostsList);

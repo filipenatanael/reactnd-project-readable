@@ -2,18 +2,11 @@ import React, { Component } from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
-import {
-  fetchCategories,
-  fetchCategoryPosts
-} from '../actions';
-
-// <ListItemIcon>{counts % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
 
 class Categories extends Component {
-  componentWillMount(){
+  componentWillMount() {
     this.props.fetchCategories()
   }
 
@@ -47,10 +40,4 @@ class Categories extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    categories: state.categories
-  }
-}
-
-export default connect(mapStateToProps, { fetchCategories, fetchCategoryPosts })(Categories);
+export default Categories;
