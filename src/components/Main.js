@@ -9,7 +9,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 import NavbarHeader from './NavbarHeader';
-import Categories from './Categories';
+import CategoriesContainner from '../containers/Categories';
 import PostsList from './PostsList';
 
 const drawerWidth = 240;
@@ -56,7 +56,7 @@ class Main extends React.Component {
           </div>
           <Divider />
 
-          <Categories />
+          <CategoriesContainner />
 
           <Divider />
         </Drawer>
