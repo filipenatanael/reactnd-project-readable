@@ -10,7 +10,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 import NavbarHeader from './NavbarHeader';
 import CategoriesContainner from '../containers/Categories';
-import PostsList from './PostsList';
+import PostsListContainner from '../containers/PostsList';
 
 const drawerWidth = 240;
 
@@ -67,7 +67,7 @@ class Main extends React.Component {
           })}
         >
 
-          <PostsList match={match} />
+          <PostsListContainner match={match} />
         </main>
       </div>
     );
