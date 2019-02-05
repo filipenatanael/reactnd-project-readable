@@ -35,11 +35,14 @@ class Post extends React.Component {
           title={post.title}
           subheader={`Posted by ${post.author} - ${timestampToDate(post.timestamp)}`}
         />
-        <CardContent>
-          <Typography component="p">
-            {`[ ${post.category} ] ${post.body}`}
-          </Typography>
-        </CardContent>
+
+        { post.body.length > 0 &&(
+          <CardContent>
+            <Typography component="p">
+              {`[ ${post.category} ] ${post.body}`}
+            </Typography>
+          </CardContent>
+        )}
 
         <CardActions className={classes.actions} disableActionSpacing>
           <IconButton aria-label="Cart">
@@ -103,6 +106,7 @@ const styles = theme => ({
 
 Post.propTypes = {
   classes: PropTypes.object.isRequired,
+  post: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(Post);
