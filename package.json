@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "chai": "^4.2.0",
+    "codecov": "^3.1.0",
     "lodash": "^4.17.11",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
@@ -21,7 +22,8 @@
     "test": "react-scripts test --env=jsdom --verbose false",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "cov": "codecov --token=b42d8cb0-b3cf-4e8d-9777-8a35ed0b0d5e"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -44,5 +46,16 @@
     "babel-loader": "^8.0.4",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!**/src/index.js",
+      "!**/src/containers/*.{js,jsx}",
+      "!**/src/reducers/*.{js,jsx}",
+      "!**/src/actions/*.{js,jsx}",
+      "!**/src/stories/*.{js,jsx}",
+      "!**/src/serviceWorker.js"
+    ]
   }
 }
