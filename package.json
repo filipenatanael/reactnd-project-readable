@@ -1,6 +1,7 @@
 {
   "name": "reactnd-project-readable",
   "version": "0.1.0",
+  "author": "Filipe Natanael <filipenatanaeldemorais@gmail.com>",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
