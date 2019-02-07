@@ -7,6 +7,7 @@ import Select from '@material-ui/core/Select';
 import Paper from '@material-ui/core/Paper';
 import _ from 'lodash';
 import Post from './Post';
+import CustomizedSnackbars from './shared/CustomizedSnackbars';
 
 class PostsList extends Component {
   componentWillMount() {
@@ -21,7 +22,7 @@ class PostsList extends Component {
     }
 
     renderPosts() {
-      const { posts  } = this.props;
+      const { classes, posts  } = this.props;
 
       if (posts.length > 0) {
         const orderedPosts = _.sortBy(posts, this.props.postsOrder).reverse();
@@ -29,28 +30,34 @@ class PostsList extends Component {
           _.map(orderedPosts, post => <Grid key={post.id} item xs={6}><Post key={post.id} post={post} /></Grid>)
         );
       }
-      return <div>Loading Posts...</div>
+      return (
+        <div className={classes.root}>
+          <CustomizedSnackbars
+            variant={'warning'}
+            message={'No posts found for the category!'}
+          />
+        </div>
+      )
     }
 
     render(){
-      const { postSortOrder } = this.props;
-      const { classes } = this.props;
+      const { classes, postSortOrder } = this.props;
 
       return(
         <div className={classes.root}>
         <Grid container spacing={24}>
           <Grid item xs={12}>
-          <Paper className={classes.paper}>
-            <Select
-              value={'this.state.age'}
-              onChange={event => postSortOrder(event.target.value)}
-            >
-              <MenuItem value="">
-              <em>None</em>
-              </MenuItem>
-              <MenuItem value={0}>Votes</MenuItem>
-              <MenuItem value={1}>Date</MenuItem>
-            </Select>
+            <Paper className={classes.paper}>
+              <Select
+                value={'this.state.age'}
+                onChange={event => postSortOrder(event.target.value)}
+              >
+                <MenuItem value="">
+                <em>None</em>
+                </MenuItem>
+                <MenuItem value={0}>Votes</MenuItem>
+                <MenuItem value={1}>Date</MenuItem>
+              </Select>
             </Paper>
           </Grid>
             {this.renderPosts()}
