@@ -64,10 +64,11 @@ class Post extends React.Component {
             aria-expanded={this.state.expanded}
             aria-label="Show more"
           >
-            <ExpandMoreIcon />
+            {/*<ExpandMoreIcon />*/}
           </IconButton>
         </CardActions>
 
+        {/*
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography paragraph>Method:</Typography>
@@ -76,6 +77,7 @@ class Post extends React.Component {
             </Typography>
           </CardContent>
         </Collapse>
+      */}
       </Card>
     );
   }

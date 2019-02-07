@@ -1,5 +1,3 @@
-# Readable
-
 <p align="center"><a href="https://in.udacity.com/course/react-nanodegree--nd019" target="_blank"><img width="180" src="https://www.wykop.pl/cdn/c3397993/link_SIrKotPCldE7IGnWEjOBSIX1SDMEhE1w,w300h223.jpg" alt="My Reads"></a></p>
 
 <p align="center">
@@ -11,10 +9,10 @@
 
 
 
-<h1 align="center">My Project Udacity Nanodegree <br>Readable</h1>
+<h1 align="center">My Udacity Project - Nanodegree <br>Readable</h1>
 
 <p align="center">
-<h5>Project Overview<h5>
+<h5>Project Overview</h5>
 
 For the Readable project, you will build a content and comment web app. Users will be able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users will also be able to edit and delete posts and comments.
   </p>
