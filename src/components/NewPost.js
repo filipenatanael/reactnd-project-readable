@@ -6,6 +6,8 @@ import Paper from '@material-ui/core/Paper';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator, SelectValidator  } from 'react-material-ui-form-validator';
+import { connect } from 'react-redux';
+import { createPost, fetchCategories } from '../actions';
 
 class NewPost extends React.Component {
   constructor(props) {
@@ -13,7 +15,7 @@ class NewPost extends React.Component {
     this.state = {
       formData: {
         title: '',
-        content: '',
+        body: '',
         author: '',
         category: '',
       },
@@ -24,6 +26,10 @@ class NewPost extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWilMount() {
+    this.props.fetchCategories()
+  }
+
   handleChange(event) {
     const { formData } = this.state;
     formData[event.target.name] = event.target.value;
@@ -32,7 +38,10 @@ class NewPost extends React.Component {
 
   handleSubmit() {
     this.setState({ submitted: true }, () => {
-      setTimeout(() => this.setState({ submitted: false }), 5000);
+      this.props.createPost(this.state.formData, () => {
+        this.props.history.push('/');
+      });
+      // setTimeout(() => this.setState({ submitted: false }), 5000);
     });
   }
 
@@ -75,8 +84,8 @@ class NewPost extends React.Component {
                     className={classes.textValidator}
                     label="Content"
                     onChange={this.handleChange}
-                    name="content"
-                    value={formData.content}
+                    name="body"
+                    value={formData.body}
                     validators={['required']}
                     errorMessages={['this field is required']}
                  />
@@ -150,6 +159,10 @@ NewPost.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
+function mapStateToProps(state) {
+  return { categories: state.categories }
+}
+
 const styles = theme => ({
   root: {
     marginTop: 75,
@@ -182,4 +195,4 @@ const styles = theme => ({
   },
 });
 
-export default withStyles(styles)(NewPost);
+export default withStyles(styles)(connect(mapStateToProps, {createPost, fetchCategories})(NewPost));
