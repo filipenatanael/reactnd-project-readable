@@ -47,17 +47,17 @@ class PostsList extends Component {
         <div className={classes.root}>
         <Grid container spacing={24}>
           <Grid item xs={12}>
-          <Paper className={classes.paper}>
-            <Select
-              value={'this.state.age'}
-              onChange={event => postSortOrder(event.target.value)}
-            >
-              <MenuItem value="">
-              <em>None</em>
-              </MenuItem>
-              <MenuItem value={0}>Votes</MenuItem>
-              <MenuItem value={1}>Date</MenuItem>
-            </Select>
+            <Paper className={classes.paper}>
+              <Select
+                value={'this.state.age'}
+                onChange={event => postSortOrder(event.target.value)}
+              >
+                <MenuItem value="">
+                <em>None</em>
+                </MenuItem>
+                <MenuItem value={0}>Votes</MenuItem>
+                <MenuItem value={1}>Date</MenuItem>
+              </Select>
             </Paper>
           </Grid>
             {this.renderPosts()}
