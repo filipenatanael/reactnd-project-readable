@@ -1,22 +1,33 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, MuiThemeProvider, createMuiTheme  } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import  CssBaseline from '@material-ui/core/CssBaseline';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
-
+import Button from '@material-ui/core/Button';
+import green from '@material-ui/core/colors/green';
 import CategoriesContainner from '../containers/Categories';
+import { Link } from 'react-router-dom'
 
 const drawerWidth = 240;
+const GoToNewPost = props => <Link to="/post/new" {...props} />
+
+const muiThemeCustom = createMuiTheme({
+  palette: {
+    primary: green,
+  },
+  typography: {
+    useNextVariants: true,
+  },
+});
 
 class NavbarHeader extends Component {
   state = {
@@ -58,8 +69,22 @@ class NavbarHeader extends Component {
             <Typography variant="h6" color="inherit" noWrap>
               React Project Readable
             </Typography>
+
+            <div className={classes.button}>
+              <MuiThemeProvider theme={muiThemeCustom}>
+                <Button
+                  component={GoToNewPost}
+                  variant="contained"
+                  color="primary"
+                >
+                Create Post
+                </Button>
+              </MuiThemeProvider>
+            </div>
+
           </Toolbar>
           </AppBar>
+
           <Drawer
             className={classes.drawer}
             variant="persistent"
@@ -126,6 +151,10 @@ const styles = theme => ({
   },
   hide: {
     display: 'none',
+  },
+  button: {
+    marginLeft: 'auto',
+    marginRight: 24
   }
 });
 
