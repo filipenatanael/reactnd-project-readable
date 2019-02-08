@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator, SelectValidator  } from 'react-material-ui-form-validator';
 import { connect } from 'react-redux';
 import { createPost, fetchCategories } from '../actions';
+import { Link } from 'react-router-dom'
+
+const GoToMain = props => <Link to="/" {...props} />
 
 class NewPost extends React.Component {
   constructor(props) {
@@ -46,15 +48,15 @@ class NewPost extends React.Component {
   }
 
   getOptions = () => {
-    return [
-      { code: "029", name: "React" },
-      { code: "389", name: "Redux" },
-      { code: "299", name: "Udacity" }
-    ].map(category => (
-      <option key={category.code} value={category.code}>
+    const { categories } = this.props
+
+    if (categories.length > 0) {
+      return  categories.map(category => (
+        <option key={category.name} value={category.name}>
         {category.name}
-      </option>
-    ));
+        </option>
+      ));
+    }
   };
 
   render() {
@@ -133,17 +135,14 @@ class NewPost extends React.Component {
                    </Button>
 
                    <Button
+                      component={GoToMain}
                       className={classes.button}
                       raised
-                      type="submit"
                       variant="contained"
                       color="secondary"
                       disabled={submitted}
                    >
-                       {
-                           (submitted && 'Your form is submitted!')
-                           || (!submitted && 'Cancel')
-                       }
+                    Cancel
                    </Button>
                  </div>
              </ValidatorForm>
