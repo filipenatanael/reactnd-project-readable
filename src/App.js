@@ -6,7 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Main from './components/Main';
 import NewPost from './components/NewPost';
 import NavbarHeader from './components/NavbarHeader';
-import CategoriesContainner from './containers/Categories';
 
 const drawerWidth = 240;
 
@@ -22,7 +21,7 @@ class App extends Component {
   }
 
   render() {
-    const { classes, theme, match } = this.props;
+    const { classes } = this.props;
     const { open } = this.state;
 
     return (
@@ -48,7 +47,6 @@ class App extends Component {
 
 App.propTypes = {
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
 };
 
 const styles = theme => ({
