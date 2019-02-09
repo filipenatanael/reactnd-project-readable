@@ -4,7 +4,7 @@ axios.defaults.headers.common['Authorization'] = { 'Authorization': 'whatever-yo
 
 export function fetchCategories() {
   return dispatch => {
-    axios.get(`http://localhost:3001/categories`)
+    axios.get(`http://localhost:5001/categories`)
     .then(res => dispatch(fetchCategoriesSuccess(res.data)));
   }
 }
@@ -18,7 +18,7 @@ const fetchCategoriesSuccess = (categories) => {
 
 export function fetchCategoryPosts(category) {
   return dispatch => {
-    axios.get(`http://localhost:3001/${category}/posts`)
+    axios.get(`http://localhost:5001/${category}/posts`)
     .then(res => dispatch({ type: 'FETCH_CATEGORY_POSTS', payload: res.data }))
     .catch(error => console.error(error))
   }

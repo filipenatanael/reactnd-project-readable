@@ -32,11 +32,14 @@ export function createPost(values, callback) {
   }
 }
 
-function createPostSuccess(data) {
-  return {
-    type: 'POST_WAS_CREATED',
-    payload: data
-  };
+export function deletePost(id, callback) {
+  return dispatch => {
+    axios.delete(`${BASE_URL}/posts/${id}`)
+    .then(res => {
+      callback()
+      dispatch(deletePostSuccess(id));
+    });
+  }
 }
 
 function fetchPostsSuccess(data) {
@@ -46,9 +49,23 @@ function fetchPostsSuccess(data) {
   };
 }
 
+function createPostSuccess(data) {
+  return {
+    type: 'POST_WAS_CREATED',
+    payload: data
+  };
+}
+
 export function postSortOrder(sortType) {
   return {
     type: 'POST_SORT_ORDER',
     payload: sortType
   }
+}
+
+function deletePostSuccess(data) {
+    return {
+        type: 'POST_WAS_DELETED',
+        payload: data
+    }
 }

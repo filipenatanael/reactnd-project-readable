@@ -7,7 +7,9 @@ export default function (state = INITIAL_STATE, action) {
     case 'FETCH_POSTS':
       return _.mapKeys(action.payload, 'id')
     case 'FETCH_CATEGORY_POSTS':
-      return _.mapKeys(action.payload, 'id');
+      return _.mapKeys(action.payload, 'id')
+    case 'POST_WAS_DELETED':
+      return _.omit(state, action.payload)
     default:
       return state;
   }
