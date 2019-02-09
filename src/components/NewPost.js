@@ -122,7 +122,7 @@ class NewPost extends React.Component {
                  <div className={classes.buttonContainer}>
                    <Button
                       className={classes.button}
-                      raised
+                      raised="true"
                       type="submit"
                       variant="contained"
                       color="primary"
@@ -137,7 +137,7 @@ class NewPost extends React.Component {
                    <Button
                       component={GoToMain}
                       className={classes.button}
-                      raised
+                      raised="true"
                       variant="contained"
                       color="secondary"
                       disabled={submitted}
