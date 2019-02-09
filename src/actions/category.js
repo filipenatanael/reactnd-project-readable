@@ -1,4 +1,8 @@
 import axios from 'axios';
+import {
+  FETCH_CATEGORIES,
+  FETCH_CATEGORY_POSTS,
+} from './types'
 
 axios.defaults.headers.common['Authorization'] = { 'Authorization': 'whatever-you-want', 'Accept': 'application/json', };
 
@@ -11,7 +15,7 @@ export function fetchCategories() {
 
 const fetchCategoriesSuccess = (categories) => {
   return {
-    type: 'FETCH_CATEGORIES',
+    type: FETCH_CATEGORIES,
     payload: categories
   }
 }
@@ -19,7 +23,7 @@ const fetchCategoriesSuccess = (categories) => {
 export function fetchCategoryPosts(category) {
   return dispatch => {
     axios.get(`http://localhost:5001/${category}/posts`)
-    .then(res => dispatch({ type: 'FETCH_CATEGORY_POSTS', payload: res.data }))
+    .then(res => dispatch({ type: FETCH_CATEGORY_POSTS, payload: res.data }))
     .catch(error => console.error(error))
   }
 }

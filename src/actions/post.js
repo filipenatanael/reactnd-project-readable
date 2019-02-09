@@ -1,5 +1,12 @@
 import axios from 'axios';
 import { BASE_URL, guid } from '../resources/constants'
+import {
+  FETCH_POSTS,
+  POST_WAS_CREATED,
+  POST_SORT_ORDER,
+  POST_WAS_DELETED,
+} from './types'
+
 
 axios.defaults.headers.common['Authorization'] = { 'Authorization': 'whatever-you-want', 'Accept': 'application/json', };
 
@@ -44,28 +51,28 @@ export function deletePost(id, callback) {
 
 function fetchPostsSuccess(data) {
   return {
-    type: 'FETCH_POSTS',
+    type: FETCH_POSTS,
     payload: data
   };
 }
 
 function createPostSuccess(data) {
   return {
-    type: 'POST_WAS_CREATED',
+    type: POST_WAS_CREATED,
     payload: data
   };
 }
 
 export function postSortOrder(sortType) {
   return {
-    type: 'POST_SORT_ORDER',
+    type: POST_SORT_ORDER,
     payload: sortType
   }
 }
 
 function deletePostSuccess(data) {
     return {
-        type: 'POST_WAS_DELETED',
+        type: POST_WAS_DELETED,
         payload: data
     }
 }
