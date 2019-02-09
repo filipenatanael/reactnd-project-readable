@@ -7,6 +7,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import IconButton from '@material-ui/core/IconButton';
 import Post from '../../components/Post';
+import { mountWrap } from '../../helpers/contextWrap'
 
 describe('<Post />', () => {
   const getPrices = jest.fn();
@@ -32,13 +33,13 @@ describe('<Post />', () => {
   });
 
   it('renders a card with title whether title prop is passed', () => {
-    const wrapper = mount(<Post post={DATA_OBJECT} />);
+    const wrapper = mountWrap(<Post post={DATA_OBJECT} />);
     // console.log(wrapper.find('CardContent').debug());
     expect(wrapper.find(CardContent)).toHaveLength(1);
   });
 
   it('allows us to set props', () => {
-    const wrapper = mount(<Post post={DATA_OBJECT} />);
+    const wrapper = mountWrap(<Post post={DATA_OBJECT} />);
     expect(wrapper.props().post).toEqual(DATA_OBJECT);
 
     let newObject = { ...DATA_OBJECT, category: 'react' }
@@ -48,13 +49,13 @@ describe('<Post />', () => {
 
   it('when body object is not passed or nulls', () => {
     let newObject = { ...DATA_OBJECT, body: '' }
-    const wrapper = mount(<Post post={newObject} />);
+    const wrapper = mountWrap(<Post post={newObject} />);
     expect(wrapper.find(CardContent)).toHaveLength(0);
   });
 
   it('simulates click events', () => {
     const onButtonClick = sinon.spy();
-    const wrapper = mount((<IconButton onClick={onButtonClick} />));
+    const wrapper = mountWrap((<IconButton onClick={onButtonClick} />));
     wrapper.find(IconButton).simulate('click');
     expect(onButtonClick).toHaveProperty('callCount', 1);
   });
