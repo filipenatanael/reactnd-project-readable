@@ -60,4 +60,37 @@ describe('<Post />', () => {
     expect(onButtonClick).toHaveProperty('callCount', 1);
   });
 
+  it('simulates onDeletePost events', () => {
+    const onButtonClick = sinon.spy();
+    const wrapper = mountWrap((<Post post={DATA_OBJECT} onDeletePost={onButtonClick} />));
+
+    expect(wrapper.find(IconButton).filterWhere((item) => {
+      return item.prop('aria-label') === 'Delete Post';
+    })).toHaveLength(1);
+
+    expect(wrapper.find(IconButton).filterWhere((item) => {
+      return item.prop('aria-label') === 'Delete Post';
+    }).simulate('click'))
+
+    expect(onButtonClick).toHaveProperty('callCount', 1);
+  });
+
+  // it ('calls correct function to save the information', () => {
+  //   const onButtonClickMock = jest.fn();
+  //   const wrapper = shallow(
+  //     <BaseButton
+  //       onButtonClick={onButtonClickMock}
+  //     />,
+  //   );
+  //   const buttonElement = wrapper.find('.base-button'); // step 1 above
+  //   buttonElement.simulate('click'); // step 2
+  //
+  //   expect(onButtonClickMock).toHaveBeenCalledTimes(1); // step 3
+  //   expect(onButtonClickMock).toHaveBeenCalledWith(true);
+  // });
+  //
+  //
+  // //   console.log(wrapper.findWhere(node => node.hasClass === 'MuiButtonBase-root-59 MuiIconButton-root-53').debug());
+
+
 });

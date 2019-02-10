@@ -67,10 +67,7 @@ class Post extends React.Component {
             <IconButton
               aria-label="Delete Post"
               onClick={() =>
-                onDeletePost(
-                  post.id,
-                  () => { this.props.history.push('/') }
-                )}
+                onDeletePost(post.id, () => { this.props.history.push('/') } )}
               style={{ backgroundColor: 'transparent' }}
             >
                 <Grid item xs={8}>
