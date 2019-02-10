@@ -3,7 +3,8 @@ import _ from 'lodash';
 import {
   fetchPosts,
   fetchCategoryPosts,
-  postSortOrder
+  postSortOrder,
+  deletePost
 } from '../actions';
 
 import PostsList from '../components/PostsList'
@@ -20,4 +21,5 @@ export default connect(
   mapStateToProps, {
     fetchPosts,
     fetchCategoryPosts,
-    postSortOrder})(PostsList);
+    postSortOrder,
+    deletePost })(PostsList);
