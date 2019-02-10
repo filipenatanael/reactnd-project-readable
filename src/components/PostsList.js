@@ -6,7 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Paper from '@material-ui/core/Paper';
 import _ from 'lodash';
-import Post from './Post';
+import PostContainer from '../containers/Post';
 import CustomizedSnackbars from './shared/CustomizedSnackbars';
 
 class PostsList extends Component {
@@ -27,7 +27,7 @@ class PostsList extends Component {
       if (posts.length > 0) {
         const orderedPosts = _.sortBy(posts, this.props.postsOrder).reverse();
         return (
-          _.map(orderedPosts, post => <Grid key={post.id} item xs={6}><Post key={post.id} post={post} onDeletePost={deletePost} /></Grid>)
+          _.map(orderedPosts, post => <Grid key={post.id} item xs={6}><PostContainer key={post.id} post={post} onDeletePost={deletePost} /></Grid>)
         );
       }
       return (

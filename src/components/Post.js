@@ -17,12 +17,6 @@ import Grid from '@material-ui/core/Grid';
 import DeleteIcon from '@material-ui/icons/Delete';
 import BorderColor from '@material-ui/icons/BorderColor';
 
-import { connect } from 'react-redux';
-import {
-    voteForPost,
-    fetchPostCommentsCount,
-} from '../actions';
-
 function timestampToDate(unixTimestamp) {
     const date = new Date(unixTimestamp);
     return date.toDateString();
@@ -37,11 +31,7 @@ class Post extends React.Component {
   }
 
   componentWillMount() {
-    this.props.fetchPostCommentsCount(this.props.post.id, (data) => {
-      this.setState({
-        commentCount: data.amount
-      });
-    });
+    this.props.fetchPostCommentsCount(this.props.post.id, (data) => { this.setState({ ommentCount: data.amount }); });
   }
 
   render() {
@@ -63,23 +53,23 @@ class Post extends React.Component {
         )}
 
         <CardActions className={classes.actions} disableActionSpacing>
-          <IconButton aria-label="Cart">
+          <IconButton aria-label="Vote Score">
             <Badge badgeContent={post.voteScore} color="primary" classes={{ badge: classes.badge }}>
               <Star />
             </Badge>
           </IconButton>
 
-          <IconButton aria-label="Cart">
+          <IconButton aria-label="Comment Count">
             <Badge badgeContent={this.state.commentCount} color="primary" classes={{ badge: classes.badge }}>
               <Comment />
             </Badge>
           </IconButton>
 
-          <IconButton aria-label="Cart" onClick={() => voteForPost(post.id, 'upVote') }>
+          <IconButton aria-label="Up Vote" onClick={() => voteForPost(post.id, 'upVote') }>
             <ArrowUpward />
           </IconButton>
 
-          <IconButton aria-label="Cart" onClick={() => voteForPost(post.id, 'downVote')}>
+          <IconButton aria-label="Down Vote" onClick={() => voteForPost(post.id, 'downVote')}>
             <ArrowDownward />
           </IconButton>
 
@@ -135,9 +125,4 @@ Post.propTypes = {
   post: PropTypes.object.isRequired
 };
 
-
-function mapStateToProps (state, ownProps) {}
-
-export default withRouter(connect(mapStateToProps, {
-  voteForPost, fetchPostCommentsCount
-})(withStyles(styles)(Post)));
+export default withRouter(withStyles(styles)(Post));
