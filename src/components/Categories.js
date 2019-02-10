@@ -10,6 +10,8 @@ import School from '@material-ui/icons/School';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 
+import { capitalize } from '../helpers/capitalize';
+
 class Categories extends Component {
   componentWillMount() {
     this.props.fetchCategories()
@@ -28,33 +30,30 @@ class Categories extends Component {
     }
   }
 
-  capitalize = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
   render() {
     const { categories, fetchCategoryPosts } = this.props;
 
     if (categories) {
       return (
         <List>
+        <Link to="/"
+              style={linkStyling}>
           <ListItem>
             <ListItemIcon>{this.renderIcon('allposts')}</ListItemIcon>
-            <Link to="/"
-                  style={linkStyling}>
               <ListItemText primary="All Posts" />
-            </Link>
           </ListItem>
+        </Link>
         {_.map(categories, category => {
           return (
-            <ListItem button key={category.path}>
-              <ListItemIcon>{this.renderIcon(category.name)}</ListItemIcon>
-              <Link to={`/${category.path}`}
-                    onClick={() => fetchCategoryPosts(category.path)}
-                    style={linkStyling}>
-                <ListItemText primary={this.capitalize(category.name)} />
-              </Link>
-            </ListItem>
+            <Link to={`/${category.path}`}
+              onClick={() => fetchCategoryPosts(category.path)}
+              style={linkStyling}
+              key={category.path}>
+              <ListItem button>
+                <ListItemIcon>{this.renderIcon(category.name)}</ListItemIcon>
+                <ListItemText primary={capitalize(category.name)} />
+              </ListItem>
+            </Link>
           )
         })}
         </List>
