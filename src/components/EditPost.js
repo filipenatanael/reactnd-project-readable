@@ -121,7 +121,7 @@ class EditPost extends Component {
                  <br />
                  <TextValidator
                     className={classes.textValidator}
-                    label={<span className={classes.tabLabel}>Label</span>}
+                    label="Author"
                     name="author"
                     value={model.author}
                     onChange={this.handleChange}
@@ -139,12 +139,18 @@ class EditPost extends Component {
                     className={classes.selectValidator}
                     id="category"
                     name="category"
+                    label="Category"
                     value={model.category}
                     onChange={this.handleChange}
                     SelectProps={{ native: true }}
                     validators={['required']}
                     errorMessages={['this field is required']}
                     disabled={true}
+                    InputLabelProps={{
+                      classes: {
+                        root: classes.inputLabelProps
+                      }
+                    }}
                  >
                    <option value="">Select an option</option>
                    { this.getOptions() }

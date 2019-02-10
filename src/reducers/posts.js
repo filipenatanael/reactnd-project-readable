@@ -5,6 +5,7 @@ import {
   FETCH_CATEGORY_POSTS,
   POST_WAS_DELETED,
   POST_WAS_EDITED,
+  POST_WAS_VOTED,
 } from '../actions/types'
 
 const INITIAL_STATE = {};
@@ -23,6 +24,11 @@ export default function (state = INITIAL_STATE, action) {
     case POST_WAS_DELETED:
       return _.omit(state, action.payload)
     case POST_WAS_EDITED:
+      return {
+        ...state,
+        [action.payload.id]: action.payload
+      }
+    case POST_WAS_VOTED:
       return {
         ...state,
         [action.payload.id]: action.payload

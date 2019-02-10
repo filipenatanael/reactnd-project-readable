@@ -41,22 +41,23 @@ class PostsList extends Component {
     }
 
     render(){
-      const { classes, postSortOrder } = this.props;
+      const { classes, postsOrder, postSortOrder } = this.props;
 
       return(
         <div className={classes.root}>
         <Grid container spacing={24}>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
-              <Select
-                value={'this.state.age'}
-                onChange={event => postSortOrder(event.target.value)}
-              >
-                <MenuItem value="">
-                <em>None</em>
-                </MenuItem>
-                <MenuItem value={0}>Votes</MenuItem>
-                <MenuItem value={1}>Date</MenuItem>
+                <Select
+                  className={classes.select}
+                  value={postsOrder}
+                  onChange={event => {
+                    postSortOrder(event.target.value)
+                    this.setState({ seleted: event.target.value })
+                  }}
+                >
+                <MenuItem value="voteScore">Votes</MenuItem>
+                <MenuItem value="timestamp">Date</MenuItem>
               </Select>
             </Paper>
           </Grid>
@@ -77,6 +78,11 @@ const styles = theme => ({
       textAlign: 'right',
       height: 55,
       color: theme.palette.text.secondary,
+    },
+    select: {
+      width: 100,
+      borderRadius: 3,
+      backgroundColor: '#e6e6ff',
     },
 });
 

@@ -10,10 +10,18 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Comment from '@material-ui/icons/Comment';
 import Star from '@material-ui/icons/Star';
+import ArrowUpward from '@material-ui/icons/ArrowUpward';
+import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Badge from '@material-ui/core/Badge';
 import Grid from '@material-ui/core/Grid';
 import DeleteIcon from '@material-ui/icons/Delete';
 import BorderColor from '@material-ui/icons/BorderColor';
+
+import { connect } from 'react-redux';
+import {
+    voteForPost,
+    fetchPostCommentsCount,
+} from '../actions';
 
 function timestampToDate(unixTimestamp) {
     const date = new Date(unixTimestamp);
@@ -21,8 +29,23 @@ function timestampToDate(unixTimestamp) {
 }
 
 class Post extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      commentCount: 0
+    }
+  }
+
+  componentWillMount() {
+    this.props.fetchPostCommentsCount(this.props.post.id, (data) => {
+      this.setState({
+        commentCount: data.amount
+      });
+    });
+  }
+
   render() {
-    const { classes, post, onDeletePost } = this.props;
+    const { classes, post, onDeletePost, voteForPost } = this.props;
 
     return (
       <Card className={classes.card}>
@@ -47,9 +70,17 @@ class Post extends React.Component {
           </IconButton>
 
           <IconButton aria-label="Cart">
-            <Badge badgeContent={4} color="primary" classes={{ badge: classes.badge }}>
+            <Badge badgeContent={this.state.commentCount} color="primary" classes={{ badge: classes.badge }}>
               <Comment />
             </Badge>
+          </IconButton>
+
+          <IconButton aria-label="Cart" onClick={() => voteForPost(post.id, 'upVote') }>
+            <ArrowUpward />
+          </IconButton>
+
+          <IconButton aria-label="Cart" onClick={() => voteForPost(post.id, 'downVote')}>
+            <ArrowDownward />
           </IconButton>
 
           {/* editButtons */}
@@ -104,4 +135,9 @@ Post.propTypes = {
   post: PropTypes.object.isRequired
 };
 
-export default withRouter(withStyles(styles)(Post));
+
+function mapStateToProps (state, ownProps) {}
+
+export default withRouter(connect(mapStateToProps, {
+  voteForPost, fetchPostCommentsCount
+})(withStyles(styles)(Post)));
