@@ -1,2 +1,2 @@
-export * from './category_actions';
-export * from './post_actions';
+export * from './category';
+export * from './post';

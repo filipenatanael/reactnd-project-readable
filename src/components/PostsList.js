@@ -22,12 +22,12 @@ class PostsList extends Component {
     }
 
     renderPosts() {
-      const { classes, posts  } = this.props;
+      const { classes, posts, deletePost } = this.props;
 
       if (posts.length > 0) {
         const orderedPosts = _.sortBy(posts, this.props.postsOrder).reverse();
         return (
-          _.map(orderedPosts, post => <Grid key={post.id} item xs={6}><Post key={post.id} post={post} /></Grid>)
+          _.map(orderedPosts, post => <Grid key={post.id} item xs={6}><Post key={post.id} post={post} onDeletePost={deletePost} /></Grid>)
         );
       }
       return (
