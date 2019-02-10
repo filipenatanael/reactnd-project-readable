@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { BASE_URL } from '../resources/constants'
 import {
   FETCH_CATEGORIES,
   FETCH_CATEGORY_POSTS,
@@ -8,7 +9,7 @@ axios.defaults.headers.common['Authorization'] = { 'Authorization': 'whatever-yo
 
 export function fetchCategories() {
   return dispatch => {
-    axios.get(`http://localhost:5001/categories`)
+    axios.get(`${BASE_URL}/categories`)
     .then(res => dispatch(fetchCategoriesSuccess(res.data)));
   }
 }
@@ -22,7 +23,7 @@ const fetchCategoriesSuccess = (categories) => {
 
 export function fetchCategoryPosts(category) {
   return dispatch => {
-    axios.get(`http://localhost:5001/${category}/posts`)
+    axios.get(`${BASE_URL}/${category}/posts`)
     .then(res => dispatch({ type: FETCH_CATEGORY_POSTS, payload: res.data }))
     .catch(error => console.error(error))
   }

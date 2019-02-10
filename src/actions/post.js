@@ -2,9 +2,11 @@ import axios from 'axios';
 import { BASE_URL, guid } from '../resources/constants'
 import {
   FETCH_POSTS,
+  FETCH_POST,
   POST_WAS_CREATED,
   POST_SORT_ORDER,
   POST_WAS_DELETED,
+  POST_WAS_EDITED,
 } from './types'
 
 
@@ -12,8 +14,18 @@ axios.defaults.headers.common['Authorization'] = { 'Authorization': 'whatever-yo
 
 export function fetchPosts() {
   return dispatch => {
-    axios.get(`http://localhost:5001/posts`)
+    axios.get(`${BASE_URL}/posts`)
     .then(res => dispatch(fetchPostsSuccess(res.data)));
+  }
+}
+
+export function fetchPost(id, callback) {
+  return dispatch => {
+    axios.get(`${BASE_URL}/posts/${id}`)
+    .then(res => {
+      dispatch(fetchPostSuccess(res.data))
+      setTimeout(function(){ callback() }, 100);
+    })
   }
 }
 
@@ -39,6 +51,23 @@ export function createPost(values, callback) {
   }
 }
 
+export function editPost(id, values, callback) {
+  return dispatch => {
+    axios.put(`${BASE_URL}/posts/${id}`, values)
+    .then(res => {
+      callback();
+      dispatch(editPostSuccess(res.data))
+    });
+  }
+}
+
+function editPostSuccess(data) {
+  return {
+    type: POST_WAS_EDITED,
+    payload: data
+  }
+}
+
 export function deletePost(id, callback) {
   return dispatch => {
     axios.delete(`${BASE_URL}/posts/${id}`)
@@ -52,6 +81,14 @@ export function deletePost(id, callback) {
 function fetchPostsSuccess(data) {
   return {
     type: FETCH_POSTS,
+    payload: data
+  };
+}
+
+
+function fetchPostSuccess(data) {
+  return {
+    type: FETCH_POST,
     payload: data
   };
 }
@@ -71,8 +108,8 @@ export function postSortOrder(sortType) {
 }
 
 function deletePostSuccess(data) {
-    return {
-        type: POST_WAS_DELETED,
-        payload: data
-    }
+  return {
+    type: POST_WAS_DELETED,
+    payload: data
+  }
 }
