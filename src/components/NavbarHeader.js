@@ -66,9 +66,12 @@ class NavbarHeader extends Component {
               >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit" noWrap>
-              React Project Readable
-            </Typography>
+
+            <Link to="/" style={{ paddingLeft: 10, textDecoration: 'none', color: '#fff' }}>
+              <Typography variant="h6" color="inherit" noWrap>
+                React Project Readable
+              </Typography>
+            </Link>
 
             <div className={classes.button}>
               <MuiThemeProvider theme={muiThemeCustom}>

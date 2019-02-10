@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL, guid } from '../resources/constants'
+import { BASE_URL, guid } from '../resources/constants';
 import {
   FETCH_POSTS,
   FETCH_POST,
@@ -7,7 +7,8 @@ import {
   POST_SORT_ORDER,
   POST_WAS_DELETED,
   POST_WAS_EDITED,
-} from './types'
+  POST_WAS_VOTED,
+} from './types';
 
 
 axios.defaults.headers.common['Authorization'] = { 'Authorization': 'whatever-you-want', 'Accept': 'application/json', };
@@ -78,6 +79,13 @@ export function deletePost(id, callback) {
   }
 }
 
+export function voteForPost(id, vote) {
+  return dispatch => {
+    axios.post(`${BASE_URL}/posts/${id}`, { option: vote })
+    .then(res => dispatch(votedPostSuccess(res.data)))
+  }
+}
+
 function fetchPostsSuccess(data) {
   return {
     type: FETCH_POSTS,
@@ -110,6 +118,13 @@ export function postSortOrder(sortType) {
 function deletePostSuccess(data) {
   return {
     type: POST_WAS_DELETED,
+    payload: data
+  }
+}
+
+function votedPostSuccess(data) {
+  return {
+    type: POST_WAS_VOTED,
     payload: data
   }
 }

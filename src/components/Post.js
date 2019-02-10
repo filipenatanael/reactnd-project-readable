@@ -10,6 +10,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Comment from '@material-ui/icons/Comment';
 import Star from '@material-ui/icons/Star';
+import ArrowUpward from '@material-ui/icons/ArrowUpward';
+import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Badge from '@material-ui/core/Badge';
 import Grid from '@material-ui/core/Grid';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -21,8 +23,19 @@ function timestampToDate(unixTimestamp) {
 }
 
 class Post extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      commentCount: 0
+    }
+  }
+
+  componentWillMount() {
+    this.props.fetchPostCommentsCount(this.props.post.id, (data) => { this.setState({ ommentCount: data.amount }); });
+  }
+
   render() {
-    const { classes, post, onDeletePost } = this.props;
+    const { classes, post, onDeletePost, voteForPost } = this.props;
 
     return (
       <Card className={classes.card}>
@@ -40,16 +53,24 @@ class Post extends React.Component {
         )}
 
         <CardActions className={classes.actions} disableActionSpacing>
-          <IconButton aria-label="Cart">
+          <IconButton aria-label="Vote Score">
             <Badge badgeContent={post.voteScore} color="primary" classes={{ badge: classes.badge }}>
               <Star />
             </Badge>
           </IconButton>
 
-          <IconButton aria-label="Cart">
-            <Badge badgeContent={4} color="primary" classes={{ badge: classes.badge }}>
+          <IconButton aria-label="Comment Count">
+            <Badge badgeContent={this.state.commentCount} color="primary" classes={{ badge: classes.badge }}>
               <Comment />
             </Badge>
+          </IconButton>
+
+          <IconButton aria-label="Up Vote" onClick={() => voteForPost(post.id, 'upVote') }>
+            <ArrowUpward />
+          </IconButton>
+
+          <IconButton aria-label="Down Vote" onClick={() => voteForPost(post.id, 'downVote')}>
+            <ArrowDownward />
           </IconButton>
 
           {/* editButtons */}

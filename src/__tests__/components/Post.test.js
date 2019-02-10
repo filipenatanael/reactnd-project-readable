@@ -10,14 +10,6 @@ import Post from '../../components/Post';
 import { mountWrap } from '../../helpers/contextWrap'
 
 describe('<Post />', () => {
-  const getPrices = jest.fn();
-
-  // const props = {
-  //   fetching: false,
-  //   error: false,
-  //   prices: {},
-  //   getPrices: getPrices,
-  // };
 
   const DATA_OBJECT = {
     title: 'Reactnd Project Readable - Testing',
@@ -28,18 +20,20 @@ describe('<Post />', () => {
     voteScore: -5,
   }
 
+  const mockFetchPostCommentsCount = jest.fn();
+
   it('shallow renders correctly', () => {
     expect(shallow(<Post post={DATA_OBJECT} />));
   });
 
   it('renders a card with title whether title prop is passed', () => {
-    const wrapper = mountWrap(<Post post={DATA_OBJECT} />);
+    const wrapper = mountWrap(<Post post={DATA_OBJECT} fetchPostCommentsCount={mockFetchPostCommentsCount} />);
     // console.log(wrapper.find('CardContent').debug());
     expect(wrapper.find(CardContent)).toHaveLength(1);
   });
 
   it('allows us to set props', () => {
-    const wrapper = mountWrap(<Post post={DATA_OBJECT} />);
+    const wrapper = mountWrap(<Post post={DATA_OBJECT} fetchPostCommentsCount={mockFetchPostCommentsCount} />);
     expect(wrapper.props().post).toEqual(DATA_OBJECT);
 
     let newObject = { ...DATA_OBJECT, category: 'react' }
@@ -49,20 +43,20 @@ describe('<Post />', () => {
 
   it('when body object is not passed or nulls', () => {
     let newObject = { ...DATA_OBJECT, body: '' }
-    const wrapper = mountWrap(<Post post={newObject} />);
+    const wrapper = mountWrap(<Post post={newObject} fetchPostCommentsCount={mockFetchPostCommentsCount} />);
     expect(wrapper.find(CardContent)).toHaveLength(0);
   });
 
   it('simulates click events', () => {
     const onButtonClick = sinon.spy();
-    const wrapper = mountWrap((<IconButton onClick={onButtonClick} />));
+    const wrapper = mountWrap((<IconButton onClick={onButtonClick} fetchPostCommentsCount={mockFetchPostCommentsCount} />));
     wrapper.find(IconButton).simulate('click');
     expect(onButtonClick).toHaveProperty('callCount', 1);
   });
 
   it('simulates onDeletePost events', () => {
     const onButtonClick = sinon.spy();
-    const wrapper = mountWrap((<Post post={DATA_OBJECT} onDeletePost={onButtonClick} />));
+    const wrapper = mountWrap((<Post post={DATA_OBJECT} onDeletePost={onButtonClick} fetchPostCommentsCount={mockFetchPostCommentsCount} />));
 
     expect(wrapper.find(IconButton).filterWhere((item) => {
       return item.prop('aria-label') === 'Delete Post';
@@ -74,6 +68,38 @@ describe('<Post />', () => {
 
     expect(onButtonClick).toHaveProperty('callCount', 1);
   });
+
+  it('simulates on vote up events', () => {
+    let voteForPost = sinon.spy();
+    let wrapper = mountWrap((<Post
+      post={DATA_OBJECT}
+      fetchPostCommentsCount={mockFetchPostCommentsCount}
+      voteForPost={voteForPost} />));
+
+    expect(wrapper.find(IconButton).filterWhere((item) => {
+      return item.prop('aria-label') === 'Up Vote';
+    }).simulate('click'))
+
+    expect(voteForPost).toHaveProperty('callCount', 1);
+  });
+
+
+  it('simulates on vote down events', () => {
+    let voteForPost = sinon.spy();
+    let wrapper = mountWrap((<Post
+      post={DATA_OBJECT}
+      fetchPostCommentsCount={mockFetchPostCommentsCount}
+      voteForPost={voteForPost} />));
+
+    expect(wrapper.find(IconButton).filterWhere((item) => {
+      return item.prop('aria-label') === 'Down Vote';
+    }).simulate('click'))
+
+    expect(voteForPost).toHaveProperty('callCount', 1);
+  });
+
+
+
 
   // it ('calls correct function to save the information', () => {
   //   const onButtonClickMock = jest.fn();
