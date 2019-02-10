@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const heading = {
   fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -8,7 +8,7 @@ const heading = {
   top: '50%'
 }
 
-const NotFound = ({ }) => {
+const NotFound = () => {
   return (
     <h1 style={heading}>
       Not Found 404.

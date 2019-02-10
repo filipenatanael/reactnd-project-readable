@@ -14,7 +14,8 @@ class EditPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      formData: {
+      model: {
+        id: '',
         title: '',
         body: '',
         author: '',
@@ -29,40 +30,34 @@ class EditPost extends Component {
   }
 
   fillFields = () => {
-    const { formData } = this.state;
-    const {
-      post
-    } = this.props
+    const { post } = this.props
     if (post) {
-      formData['title'] = post.title;
-      formData['body'] = post.body;
-      formData['author'] = post.author;
-      formData['category'] = post.category;
-      this.setState({ formData });
+      const { deleted, timestamp, voteScore, ...values } = post
+      // model['title'] = post.title;
+      // model['body'] = post.body;
+      // model['author'] = post.author;
+      // model['category'] = post.category;
+      this.setState({ model: { ...values } });
     }
   }
 
   handleChange = (event) => {
-    const { formData } = this.state;
-    formData[event.target.name] = event.target.value;
-    this.setState({ formData });
+    const { model } = this.state;
+    model[event.target.name] = event.target.value;
+    this.setState({ model });
   }
 
   handleSubmit = () => {
-    const { post,
-      match: { params: { id } },
-      classes
-    } = this.props
-
-    const { author, category, ...onlySomeFileds } = this.state.formData
-    this.props.editPost(id, onlySomeFileds, () => {
+    const { model } = this.state.model
+    const { id, author, category, ...values } = model
+    // Call the editPost action
+    this.props.editPost(model.id, values, () => {
       this.props.history.push('/');
     })
   }
 
   getOptions = () => {
     const { categories } = this.props
-
     if (categories.length > 0) {
       return  categories.map(category => (
         <option key={category.name} value={category.name}>
@@ -73,12 +68,13 @@ class EditPost extends Component {
   };
 
   render() {
-    const { post,
-      match: { params: { id, category } },
+    const {
+      post,
+      match: { params: { category } },
       classes
     } = this.props
 
-    const { formData, submitted } = this.state;
+    const { model, submitted } = this.state;
 
     return (
       (!post || post.category !== category)
@@ -97,7 +93,7 @@ class EditPost extends Component {
                     className={classes.textValidator}
                     label="Title"
                     name="title"
-                    value={formData.title}
+                    value={model.title}
                     onChange={this.handleChange}
                     validators={['required']}
                     errorMessages={['this field is required']}
@@ -112,7 +108,7 @@ class EditPost extends Component {
                     className={classes.textValidator}
                     label="Content"
                     name="body"
-                    value={formData.body}
+                    value={model.body}
                     onChange={this.handleChange}
                     validators={['required']}
                     errorMessages={['this field is required']}
@@ -127,7 +123,7 @@ class EditPost extends Component {
                     className={classes.textValidator}
                     label={<span className={classes.tabLabel}>Label</span>}
                     name="author"
-                    value={formData.author}
+                    value={model.author}
                     onChange={this.handleChange}
                     validators={['required']}
                     errorMessages={['this field is required']}
@@ -143,7 +139,7 @@ class EditPost extends Component {
                     className={classes.selectValidator}
                     id="category"
                     name="category"
-                    value={formData.category}
+                    value={model.category}
                     onChange={this.handleChange}
                     SelectProps={{ native: true }}
                     validators={['required']}
