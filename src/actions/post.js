@@ -2,7 +2,7 @@ import axios from 'axios';
 import { BASE_URL, guid } from '../resources/constants';
 import {
   FETCH_POSTS,
-  FETCH_POST,
+  FETCH_POST_ID,
   POST_WAS_CREATED,
   POST_SORT_ORDER,
   POST_WAS_DELETED,
@@ -96,7 +96,7 @@ function fetchPostsSuccess(data) {
 
 function fetchPostSuccess(data) {
   return {
-    type: FETCH_POST,
+    type: FETCH_POST_ID,
     payload: data
   };
 }

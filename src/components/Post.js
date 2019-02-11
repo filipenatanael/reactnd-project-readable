@@ -40,7 +40,7 @@ class Post extends React.Component {
     return (
       <Card className={classes.card}>
         <CardHeader
-          title={post.title}
+          title={<Link to={`${post.category}/${post.id}`} style={{ textDecoration: 'none', color: '#000' }}>{post.title}</Link>}
           subheader={`Posted by ${post.author} - ${timestampToDate(post.timestamp)}`}
         />
 
