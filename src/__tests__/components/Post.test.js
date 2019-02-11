@@ -49,7 +49,7 @@ describe('<Post />', () => {
 
   it('simulates click events', () => {
     const onButtonClick = sinon.spy();
-    const wrapper = mountWrap((<IconButton onClick={onButtonClick} fetchPostCommentsCount={mockFetchPostCommentsCount} />));
+    const wrapper = mountWrap(<IconButton onClick={onButtonClick} />);
     wrapper.find(IconButton).simulate('click');
     expect(onButtonClick).toHaveProperty('callCount', 1);
   });

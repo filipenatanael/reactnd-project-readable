@@ -31,7 +31,7 @@ class Post extends React.Component {
   }
 
   componentWillMount() {
-    this.props.fetchPostCommentsCount(this.props.post.id, (data) => { this.setState({ ommentCount: data.amount }); });
+    this.props.fetchPostCommentsCount(this.props.post.id, (data) => { this.setState({ commentCount: data.amount }); });
   }
 
   render() {
@@ -40,7 +40,7 @@ class Post extends React.Component {
     return (
       <Card className={classes.card}>
         <CardHeader
-          title={post.title}
+          title={<Link to={`${post.category}/${post.id}`} style={{ textDecoration: 'none', color: '#000' }}>{post.title}</Link>}
           subheader={`Posted by ${post.author} - ${timestampToDate(post.timestamp)}`}
         />
 
