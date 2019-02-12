@@ -48,7 +48,7 @@ class EditPost extends Component {
   }
 
   handleSubmit = () => {
-    const { model } = this.state.model
+    const { model } = this.state
     const { id, author, category, ...values } = model
     // Call the editPost action
     this.props.editPost(model.id, values, () => {
