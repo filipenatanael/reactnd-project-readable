@@ -5,6 +5,7 @@ import {
   FETCH_POST_COMMENTS_COUNT,
   FETCH_POST_COMMENTS,
   COMMENT_POST_WAS_DELETED,
+  VOTE_FOR_COMMENT,
 } from './types';
 
 axios.defaults.headers.common['Authorization'] = { 'Authorization': 'whatever-you-want', 'Accept': 'application/json', };
@@ -19,7 +20,7 @@ export function fetchPostCommentsCount(id, callback) {
       const data = { id, amount }
       callback(data);
       dispatch({ type: FETCH_POST_COMMENTS_COUNT, payload: data });
-    });
+    }).catch(error => console.log(error));
   }
 }
 
@@ -38,6 +39,14 @@ export function deleteCommentPost(id, callback) {
     .then(response => {
       callback();
       dispatch({ type: COMMENT_POST_WAS_DELETED, payload: response.data });
-    });
+    }).catch(error => console.log(error));
+  }
+}
+
+export function voteForComment(id, vote) {
+  return dispatch => {
+    axios.post(`${BASE_URL}/comments/${id}`, { option: vote })
+    .then(response => dispatch({ type: VOTE_FOR_COMMENT, payload: response.data }))
+    .catch(error => console.log(error));
   }
 }

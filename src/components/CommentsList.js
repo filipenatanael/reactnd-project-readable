@@ -13,8 +13,9 @@ class CommentsList extends Component {
     fetchPostComments(postId);
   }
 
-  onCommentDeleted = (commentId, postId) =>{
+  onDeleted = (commentId) => {
     const {
+      postId,
       deleteCommentPost,
       fetchPostComments,
     } = this.props;
@@ -25,7 +26,7 @@ class CommentsList extends Component {
   }
 
   render() {
-    const { classes, postCategory, comments } = this.props
+    const { classes, postCategory, comments, voteForComment } = this.props
     return _.map(comments, (comment, id) => {
       return (
         <Grid key={id} item xs={12}>
@@ -34,7 +35,8 @@ class CommentsList extends Component {
               <Comment
                 comment={comment}
                 postCategory={postCategory}
-                onCommentDeleted={this.onCommentDeleted}
+                onDeleted={this.onDeleted}
+                onVote={voteForComment}
               />
             </List>
           </Card>

@@ -3,6 +3,7 @@ import _ from 'lodash';
 import {
   fetchPostComments,
   deleteCommentPost,
+  voteForComment,
 } from '../actions';
 
 import CommentsList from '../components/CommentsList';
@@ -16,5 +17,6 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   fetchPostComments,
-  deleteCommentPost
+  deleteCommentPost,
+  voteForComment,
 })(CommentsList);

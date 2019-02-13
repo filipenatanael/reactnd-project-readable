@@ -25,7 +25,7 @@ class Comment extends Component {
 
 
   render() {
-    const { classes, comment, postCategory, onCommentDeleted } = this.props
+    const { classes, comment, postCategory, onDeleted, onVote } = this.props
     return (
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
@@ -45,16 +45,16 @@ class Comment extends Component {
         <CardActions className={classes.actions} disableActionSpacing>
 
           <IconButton aria-label="Vote Score">
-            <Badge badgeContent={5} color="primary" classes={{ badge: classes.badge }}>
+            <Badge badgeContent={comment.voteScore ? comment.voteScore : 0} color="primary" classes={{ badge: classes.badge }}>
               <Star />
             </Badge>
           </IconButton>
 
-          <IconButton aria-label="Up Vote" onClick={() => false}>
+          <IconButton aria-label="Up Vote" onClick={() => onVote(comment.id, 'upVote')}>
             <ArrowUpward />
           </IconButton>
 
-          <IconButton aria-label="Down Vote" onClick={() => false}>
+          <IconButton aria-label="Down Vote" onClick={() => onVote(comment.id, 'downVote')}>
             <ArrowDownward />
           </IconButton>
 
@@ -66,7 +66,7 @@ class Comment extends Component {
             </IconButton>
           </Link>
 
-          <IconButton aria-label="Delete Comment" onClick={() => onCommentDeleted(comment.id)}>
+          <IconButton aria-label="Delete Comment" onClick={() => onDeleted(comment.id)}>
             <Grid item xs={8}>
               <DeleteIcon />
             </Grid>
