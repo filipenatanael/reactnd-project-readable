@@ -52,9 +52,7 @@ export function voteForComment(id, vote) {
   }
 }
 
-export function createComment(values, parentId, callback) {
-  const { body, author } = values;
-
+export function createComment(body, author, parentId, callback) {
   const data = {
     id: guid(),
     parentId,
@@ -65,9 +63,9 @@ export function createComment(values, parentId, callback) {
 
   return dispatch => {
     axios.post(`${BASE_URL}/comments`, data)
-    .then(res => {
+    .then(response => {
       callback();
-      dispatch({ type: COMMENT_WAS_CREATED, payload: res.data });
+      dispatch({ type: COMMENT_WAS_CREATED, payload: response.data });
     });
   }
 }

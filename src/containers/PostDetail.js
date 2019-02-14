@@ -1,18 +1,21 @@
 import { connect } from 'react-redux';
 import {
   fetchPost,
-  deletePost
+  deletePost,
+  createComment,
 } from '../actions';
 
 import PostDetail from '../components/PostDetail'
 
 function mapStateToProps (state, ownProps) {
-    return {
-      post: state.posts[ownProps.match.params.id],
-    }
+  return {
+    post: state.posts[ownProps.match.params.id],
   }
+}
 
 export default connect(
   mapStateToProps, {
     fetchPost,
-    deletePost })(PostDetail);
+    deletePost,
+    createComment,
+  })(PostDetail);

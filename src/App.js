@@ -41,7 +41,7 @@ class App extends Component {
                 <Route path="/post/new" exact component={NewPost} />
                 <Route path="/:category/edit/:id" children={props => <EditPostContainer {...props} />} />
                 <Route path="/:category" exact component={props => <Main {...props} />} />
-                <Route path="/:category/:id" exact component={PostDetail} />
+                <Route path="/:category/:id" exact component={props => <PostDetail {...props} />} />
               </Switch>
             </main>
         </div>

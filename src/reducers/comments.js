@@ -32,7 +32,10 @@ export default function (state = INITIAL_STATE, action) {
         [action.payload.id]: action.payload
       }
     case COMMENT_WAS_CREATED:
-      return { }
+      return {
+        ...state,
+        [action.payload.id]: action.payload
+      }
     default:
     return state;
   }
