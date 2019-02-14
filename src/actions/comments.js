@@ -1,16 +1,17 @@
 import axios from 'axios';
 import _ from 'lodash';
-import { BASE_URL } from '../resources/constants';
+import { BASE_URL, guid } from '../resources/constants';
 import {
-  FETCH_POST_COMMENTS_COUNT,
-  FETCH_POST_COMMENTS,
-  COMMENT_POST_WAS_DELETED,
+  FETCH_COMMENTS_COUNT,
+  FETCH_COMMENTS,
+  COMMENT_WAS_DELETED,
   VOTE_FOR_COMMENT,
+  COMMENT_WAS_CREATED,
 } from './types';
 
 axios.defaults.headers.common['Authorization'] = { 'Authorization': 'whatever-you-want', 'Accept': 'application/json', };
 
-export function fetchPostCommentsCount(id, callback) {
+export function fetchCommentsCount(id, callback) {
   return dispatch => {
     axios.get(`${BASE_URL}/posts/${id}/comments`)
     .then(response => {
@@ -19,26 +20,26 @@ export function fetchPostCommentsCount(id, callback) {
       const amount = Object.keys(comments).length;
       const data = { id, amount }
       callback(data);
-      dispatch({ type: FETCH_POST_COMMENTS_COUNT, payload: data });
+      dispatch({ type: FETCH_COMMENTS_COUNT, payload: data });
     }).catch(error => console.log(error));
   }
 }
 
-export function fetchPostComments(postId) {
+export function fetchComments(postId) {
   return dispatch => {
     axios.get(`${BASE_URL}/posts/${postId}/comments`)
     .then(response => {
-      dispatch({ type: FETCH_POST_COMMENTS, payload: response.data })
+      dispatch({ type: FETCH_COMMENTS, payload: response.data })
     })
   }
 }
 
-export function deleteCommentPost(id, callback) {
+export function deleteComment(id, callback) {
   return dispatch => {
     axios.delete(`${BASE_URL}/comments/${id}`)
     .then(response => {
       callback();
-      dispatch({ type: COMMENT_POST_WAS_DELETED, payload: response.data });
+      dispatch({ type: COMMENT_WAS_DELETED, payload: response.data });
     }).catch(error => console.log(error));
   }
 }
@@ -48,5 +49,25 @@ export function voteForComment(id, vote) {
     axios.post(`${BASE_URL}/comments/${id}`, { option: vote })
     .then(response => dispatch({ type: VOTE_FOR_COMMENT, payload: response.data }))
     .catch(error => console.log(error));
+  }
+}
+
+export function createComment(values, parentId, callback) {
+  const { body, author } = values;
+
+  const data = {
+    id: guid(),
+    parentId,
+    timestamp: Date.now(),
+    body,
+    author
+  }
+
+  return dispatch => {
+    axios.post(`${BASE_URL}/comments`, data)
+    .then(res => {
+      callback();
+      dispatch({ type: COMMENT_WAS_CREATED, payload: res.data });
+    });
   }
 }

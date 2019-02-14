@@ -1,9 +1,10 @@
 import _ from 'lodash';
 import  {
-  FETCH_POST_COMMENTS_COUNT,
-  FETCH_POST_COMMENTS,
-  COMMENT_POST_WAS_DELETED,
+  FETCH_COMMENTS_COUNT,
+  FETCH_COMMENTS,
+  COMMENT_WAS_DELETED,
   VOTE_FOR_COMMENT,
+  COMMENT_WAS_CREATED,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -12,7 +13,7 @@ const INITIAL_STATE = {
 
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
-    case FETCH_POST_COMMENTS_COUNT:
+    case FETCH_COMMENTS_COUNT:
       const { id, amount } = action.payload;
       return {
         ...state,
@@ -21,15 +22,17 @@ export default function (state = INITIAL_STATE, action) {
           [id]: amount
         }
       };
-    case FETCH_POST_COMMENTS:
+    case FETCH_COMMENTS:
       return _.mapKeys(action.payload, 'id');
-    case COMMENT_POST_WAS_DELETED:
+    case COMMENT_WAS_DELETED:
       return _.omit(state, action.payload);
     case VOTE_FOR_COMMENT:
       return {
         ...state,
         [action.payload.id]: action.payload
       }
+    case COMMENT_WAS_CREATED:
+      return { }
     default:
     return state;
   }

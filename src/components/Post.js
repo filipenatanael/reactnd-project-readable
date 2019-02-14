@@ -31,7 +31,7 @@ class Post extends React.Component {
   }
 
   componentWillMount() {
-    this.props.fetchPostCommentsCount(this.props.post.id, (data) => { this.setState({ commentCount: data.amount }); });
+    this.props.fetchCommentsCount(this.props.post.id, (data) => { this.setState({ commentCount: data.amount }); });
   }
 
   render() {

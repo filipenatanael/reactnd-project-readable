@@ -9,19 +9,19 @@ import Comment from './Comment';
 
 class CommentsList extends Component {
   componentWillMount() {
-    const { fetchPostComments, postId } = this.props;
-    fetchPostComments(postId);
+    const { fetchComments, postId } = this.props;
+    fetchComments(postId);
   }
 
   onDeleted = (commentId) => {
     const {
       postId,
-      deleteCommentPost,
-      fetchPostComments,
+      deleteComment,
+      fetchComments,
     } = this.props;
 
-    deleteCommentPost(commentId, () => {
-      fetchPostComments(postId);
+    deleteComment(commentId, () => {
+      fetchComments(postId);
     });
   }
 

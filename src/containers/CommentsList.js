@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import {
-  fetchPostComments,
-  deleteCommentPost,
+  fetchComments,
+  deleteComment,
   voteForComment,
 } from '../actions';
 
@@ -16,7 +16,7 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {
-  fetchPostComments,
-  deleteCommentPost,
+  fetchComments,
+  deleteComment,
   voteForComment,
 })(CommentsList);
