@@ -10,17 +10,20 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Comment from '@material-ui/icons/Comment';
 import Star from '@material-ui/icons/Star';
-import ArrowUpward from '@material-ui/icons/ArrowUpward';
-import ArrowDownward from '@material-ui/icons/ArrowDownward';
+import ThumbUpAlt from '@material-ui/icons/ThumbUpAlt';
+import ThumbDownAlt from '@material-ui/icons/ThumbDownAlt';
 import Badge from '@material-ui/core/Badge';
 import Grid from '@material-ui/core/Grid';
 import DeleteIcon from '@material-ui/icons/Delete';
 import BorderColor from '@material-ui/icons/BorderColor';
 
-function timestampToDate(unixTimestamp) {
-    const date = new Date(unixTimestamp);
-    return date.toDateString();
-}
+import { timestampToDate } from '../helpers/timestampToDate';
+import { capitalize } from '../helpers/capitalize';
+
+// function timestampToDate(unixTimestamp) {
+//     const date = new Date(unixTimestamp);
+//     return date.toDateString();
+// }
 
 class Post extends React.Component {
   constructor(props) {
@@ -47,7 +50,7 @@ class Post extends React.Component {
         { post.body.length > 0 &&(
           <CardContent>
             <Typography component="p">
-              {`[ ${post.category} ] ${post.body}`}
+              <b>{`( ${capitalize(post.category)} )`}</b> {post.body}
             </Typography>
           </CardContent>
         )}
@@ -59,18 +62,20 @@ class Post extends React.Component {
             </Badge>
           </IconButton>
 
-          <IconButton aria-label="Comment Count">
+          <IconButton
+            component={Link} to={`/${post.category}/${post.id}`}
+            aria-label="Comment Count">
             <Badge badgeContent={this.state.commentCount} color="primary" classes={{ badge: classes.badge }}>
               <Comment />
             </Badge>
           </IconButton>
 
           <IconButton aria-label="Up Vote" onClick={() => voteForPost(post.id, 'upVote') }>
-            <ArrowUpward />
+            <ThumbUpAlt />
           </IconButton>
 
           <IconButton aria-label="Down Vote" onClick={() => voteForPost(post.id, 'downVote')}>
-            <ArrowDownward />
+            <ThumbDownAlt />
           </IconButton>
 
           {/* editButtons */}
