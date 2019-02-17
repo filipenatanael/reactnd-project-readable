@@ -8,7 +8,6 @@ import NewPost from './components/NewPost';
 import NavbarHeader from './components/NavbarHeader';
 import EditPostContainer from './containers/EditPost';
 import PostDetail from './containers/PostDetail';
-import NotFound from './components/shared/NotFound';
 
 const drawerWidth = 240;
 

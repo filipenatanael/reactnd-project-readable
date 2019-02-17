@@ -9,20 +9,23 @@
 
 
 
-<h1 align="center">My Udacity Project - Nanodegree <br>Readable</h1>
+<h1 align="center">My Readable Project For Udacity <br>Nanodegree</h1>
 
 <p align="center">
-<h5>Project Overview</h5>
+<h4>Project Overview</h4>
 
 For the Readable project, you will build a content and comment web app. Users will be able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users will also be able to edit and delete posts and comments.
   </p>
 <br>
 
+![](https://i.ibb.co/gvKWBXg/storybook.gif)
+
 ## Stack
 - React & Redux
+- Redux Thunk
 - Material UI
-- JEST - Unit Testing
-- Storybook
+- Jest & Enzime - Unit Testing
+- Storybook - Interactive UI component
 
 ## Running
 ```shell
@@ -30,7 +33,7 @@ For the Readable project, you will build a content and comment web app. Users wi
   npm install
   npm start
 
-  // Another
+  // Another Commands
   npm run storybook
   npm run cov
   npm run test
@@ -38,8 +41,7 @@ For the Readable project, you will build a content and comment web app. Users wi
 
 ## Architecture
 ...
-## Application Programming Interface
-...
+
 ## Author
 
 | [<img src="https://avatars3.githubusercontent.com/u/14134758?s=115&v=3"><br><sub>@filipenatanael</sub>](https://github.com/filipenatanael) |
