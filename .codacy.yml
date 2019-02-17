@@ -6,3 +6,5 @@ exclude_paths:
   - '*.min.js'
   - '*.test.js'
   - '**/tests/**'
+  - '**/api-server/**'
+  - '**/.storybook/**'
