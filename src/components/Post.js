@@ -20,30 +20,24 @@ import BorderColor from '@material-ui/icons/BorderColor';
 import { timestampToDate } from '../helpers/timestampToDate';
 import { capitalize } from '../helpers/capitalize';
 
-// function timestampToDate(unixTimestamp) {
-//     const date = new Date(unixTimestamp);
-//     return date.toDateString();
-// }
-
 class Post extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      commentCount: 0
-    }
-  }
+
+  state = { _commentCount: 0 }
 
   componentWillMount() {
-    this.props.fetchCommentsCount(this.props.post.id, (data) => { this.setState({ commentCount: data.amount }); });
+    const { post } = this.props;
+    this.props.fetchCommentsCount(post.id, (data) => { this.setState({ _commentCount: data.amount }); });
   }
 
   render() {
-    const { classes, post, onDeletePost, voteForPost } = this.props;
+    const { classes, post, onDeletePost, commentCount, voteForPost,
+      match: { params: { id } } } = this.props;
+    // const { id } = this.props.match.params;
 
     return (
       <Card className={classes.card}>
         <CardHeader
-          title={<Link to={`${post.category}/${post.id}`} style={{ textDecoration: 'none', color: '#000' }}>{post.title}</Link>}
+          title={id ? `${post.title}` : <Link to={`${post.category}/${post.id}`} style={{ textDecoration: 'none', color: '#000' }}>{post.title}</Link>}
           subheader={`Posted by ${post.author} - ${timestampToDate(post.timestamp)}`}
         />
 
@@ -65,7 +59,7 @@ class Post extends React.Component {
           <IconButton
             component={Link} to={`/${post.category}/${post.id}`}
             aria-label="Comment Count">
-            <Badge badgeContent={this.state.commentCount} color="primary" classes={{ badge: classes.badge }}>
+            <Badge badgeContent={commentCount ? commentCount : this.state._commentCount} color="primary" classes={{ badge: classes.badge }}>
               <Comment />
             </Badge>
           </IconButton>
