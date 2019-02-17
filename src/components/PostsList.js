@@ -27,7 +27,14 @@ class PostsList extends Component {
       if (posts.length > 0) {
         const orderedPosts = _.sortBy(posts, this.props.postsOrder).reverse();
         return (
-          _.map(orderedPosts, post => <Grid key={post.id} item xs={6}><PostContainer key={post.id} post={post} onDeletePost={deletePost} /></Grid>)
+          _.map(orderedPosts, post => <Grid key={post.id} item xs={6}>
+            <PostContainer
+            key={post.id}
+            post={post}
+            onDeletePost={deletePost}
+          />
+          </Grid>
+          )
         );
       }
       return (

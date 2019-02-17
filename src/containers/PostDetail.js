@@ -3,6 +3,7 @@ import {
   fetchPost,
   deletePost,
   createComment,
+  fetchCommentsCount,
 } from '../actions';
 
 import PostDetail from '../components/PostDetail'
@@ -18,4 +19,5 @@ export default connect(
     fetchPost,
     deletePost,
     createComment,
+    fetchCommentsCount,
   })(PostDetail);

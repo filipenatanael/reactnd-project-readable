@@ -4,7 +4,8 @@ import {
   fetchPosts,
   fetchCategoryPosts,
   postSortOrder,
-  deletePost
+  deletePost,
+  fetchCommentsCount
 } from '../actions';
 
 import PostsList from '../components/PostsList'
@@ -22,4 +23,6 @@ export default connect(
     fetchPosts,
     fetchCategoryPosts,
     postSortOrder,
-    deletePost })(PostsList);
+    deletePost,
+    fetchCommentsCount,
+  })(PostsList);
