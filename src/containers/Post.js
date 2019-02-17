@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import {
     voteForPost,
-    fetchPostCommentsCount,
+    fetchCommentsCount,
 } from '../actions';
 
 
@@ -13,5 +13,5 @@ function mapStateToProps (state, ownProps) {
 
 export default connect(mapStateToProps, {
   voteForPost,
-  fetchPostCommentsCount
+  fetchCommentsCount
 })(Post)

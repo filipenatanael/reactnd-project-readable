@@ -7,22 +7,16 @@
   <a href="https://codeclimate.com/github/filipenatanael/reactnd-myreads/maintainability"><img src="https://api.codeclimate.com/v1/badges/b1553dba7581b75f1afc/maintainability" /></a>
 </p>
 
-
-
-<h1 align="center">My Udacity Project - Nanodegree <br>Readable</h1>
+<h1 align="center">Readable Project - Udacity Nanodegree</h1>
 
 <p align="center">
-<h5>Project Overview</h5>
+<h4>Project Overview</h4>
 
 For the Readable project, you will build a content and comment web app. Users will be able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users will also be able to edit and delete posts and comments.
   </p>
 <br>
 
-## Stack
-- React & Redux
-- Material UI
-- JEST - Unit Testing
-- Storybook
+![](https://i.ibb.co/gvKWBXg/storybook.gif)
 
 ## Running
 ```shell
@@ -30,16 +24,21 @@ For the Readable project, you will build a content and comment web app. Users wi
   npm install
   npm start
 
-  // Another
+  // Another Commands
   npm run storybook
   npm run cov
   npm run test
 ```
+## Stack
+- React & Redux
+- Redux Thunk
+- Material UI
+- Jest & Enzime - Unit Testing
+- Storybook - Interactive UI component
 
 ## Architecture
 ...
-## Application Programming Interface
-...
+
 ## Author
 
 | [<img src="https://avatars3.githubusercontent.com/u/14134758?s=115&v=3"><br><sub>@filipenatanael</sub>](https://github.com/filipenatanael) |

@@ -8,7 +8,6 @@ import NewPost from './components/NewPost';
 import NavbarHeader from './components/NavbarHeader';
 import EditPostContainer from './containers/EditPost';
 import PostDetail from './containers/PostDetail';
-import NotFound from './components/shared/NotFound';
 
 const drawerWidth = 240;
 
@@ -41,7 +40,7 @@ class App extends Component {
                 <Route path="/post/new" exact component={NewPost} />
                 <Route path="/:category/edit/:id" children={props => <EditPostContainer {...props} />} />
                 <Route path="/:category" exact component={props => <Main {...props} />} />
-                <Route path="/:category/:id" exact component={PostDetail} />
+                <Route path="/:category/:id" exact component={props => <PostDetail {...props} />} />
               </Switch>
             </main>
         </div>

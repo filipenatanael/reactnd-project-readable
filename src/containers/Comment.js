@@ -2,11 +2,13 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import {
   fetchComments,
-  createComment,
   deleteComment,
+  voteForComment,
+  editComment,
+  fetchPost
 } from '../actions';
 
-import CommentsList from '../components/CommentsList';
+import Comment from '../components/Comment';
 
 function mapStateToProps(state) {
   const comments = _.filter(state.comments, comment => !comment.deleted)
@@ -17,6 +19,8 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   fetchComments,
-  createComment,
   deleteComment,
-})(CommentsList);
+  voteForComment,
+  editComment,
+  fetchPost
+})(Comment);

@@ -71,7 +71,7 @@ class NewPost extends React.Component {
               ref="form"
               onSubmit={this.handleSubmit}
               >
-                 <h2>Create new posts</h2>
+                 <h2 className={classes.heading}>Create new posts</h2>
                  <TextValidator
                     className={classes.textValidator}
                     label="Title"
@@ -174,6 +174,9 @@ const styles = theme => ({
     padding: theme.spacing.unit,
     textAlign: 'center',
     color: theme.palette.text.secondary,
+  },
+  heading: {
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif'
   },
   textValidator: {
     width: 500
