@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://localhost:5001';
+export const BASE_URL = 'http://localhost:5001' || `${process.env.REACT_APP_BACKEND}`;
 
 export function guid() {
     function s4() {

@@ -6,6 +6,8 @@ import reducer from './reducers/index'
 import { Provider } from 'react-redux';
 import App from './App';
 
+require('dotenv').config();
+
 // To enable Redux DevTools Extension
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
@@ -16,7 +18,7 @@ const store = createStore(reducer,
 );
 
 // Only Testing...
-console.log(store.getState());
+// console.log(store.getState());
 
 ReactDOM.render(
   <Provider store={store}>
