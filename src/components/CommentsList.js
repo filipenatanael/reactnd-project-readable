@@ -5,12 +5,21 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import List from '@material-ui/core/List';
-import Comment from './Comment';
+import CommentContainer from '../containers/Comment';
+import NewComment from './NewComment';
 
 class CommentsList extends Component {
   componentWillMount() {
+    // Loading comments by postId
     const { fetchComments, postId } = this.props;
     fetchComments(postId);
+  }
+
+  onCreateComment = (comment, author) => {
+    const { postId } = this.props
+    this.props.createComment(comment, author, postId, () => {
+      this.props.updatePostCommentsCount()
+    });
   }
 
   onDeleted = (commentId) => {
@@ -22,31 +31,47 @@ class CommentsList extends Component {
 
     deleteComment(commentId, () => {
       fetchComments(postId);
+      this.props.updatePostCommentsCount();
     });
   }
 
-  render() {
-    const { classes, postCategory, comments, voteForComment } = this.props
+  renderComments() {
+    const { classes, comments, postId } = this.props
     return _.map(comments, (comment, id) => {
-      return (
-        <Grid key={id} item xs={12}>
-          <Card className={classes.card}>
+
+      if (typeof comment.body !== 'undefined') {
+        return (
+          <Card key={id} className={classes.card}>
             <List>
-              <Comment
+              <CommentContainer
+                postId={postId}
                 comment={comment}
-                postCategory={postCategory}
                 onDeleted={this.onDeleted}
-                onVote={voteForComment}
               />
             </List>
           </Card>
-        </Grid>)
+        )
+      }
     })
+  }
+
+  render() {
+    return (
+      <Grid item xs={12}>
+        <NewComment
+          onCreateComment={this.onCreateComment}
+          />
+
+        <br />
+        { this.renderComments()}
+      </Grid>
+    )
   }
 }
 
 const styles = theme => ({
   card: {
+    marginTop: 10,
     maxWidth: '100%',
     backgroundColor: '#eeeeee'
   },
