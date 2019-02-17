@@ -20,13 +20,6 @@ For the Readable project, you will build a content and comment web app. Users wi
 
 ![](https://i.ibb.co/gvKWBXg/storybook.gif)
 
-## Stack
-- React & Redux
-- Redux Thunk
-- Material UI
-- Jest & Enzime - Unit Testing
-- Storybook - Interactive UI component
-
 ## Running
 ```shell
   git clone git@github.com:filipenatanael/reactnd-project-readable.git
@@ -38,6 +31,12 @@ For the Readable project, you will build a content and comment web app. Users wi
   npm run cov
   npm run test
 ```
+## Stack
+- React & Redux
+- Redux Thunk
+- Material UI
+- Jest & Enzime - Unit Testing
+- Storybook - Interactive UI component
 
 ## Architecture
 ...
