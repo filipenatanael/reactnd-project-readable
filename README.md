@@ -7,9 +7,7 @@
   <a href="https://codeclimate.com/github/filipenatanael/reactnd-myreads/maintainability"><img src="https://api.codeclimate.com/v1/badges/b1553dba7581b75f1afc/maintainability" /></a>
 </p>
 
-
-
-<h1 align="center">My Readable Project For Udacity <br>Nanodegree</h1>
+<h1 align="center">Readable Project - Udacity Nanodegree</h1>
 
 <p align="center">
 <h4>Project Overview</h4>
