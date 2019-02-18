@@ -18,17 +18,28 @@ For the Readable project, you will build a content and comment web app. Users wi
 
 ![](https://i.ibb.co/gvKWBXg/storybook.gif)
 
-## Running
+## Running & StoryBook
+
+If you do not know the [Storybook](https://github.com/storybooks/storybook), is a development environment for UI components. It allows you to browse a component library, view the different states of each component, and interactively develop and test components.
+
 ```shell
   git clone git@github.com:filipenatanael/reactnd-project-readable.git
+  cd reactnd-project-readable
   npm install
   npm start
 
-  // Another Commands
+  /* Running API (The frontEnd are listeneing at ::5001 PORT)*/
+  cd reactnd-project-readable/api-server
+  npm install
+  node server
+
+
+  /* Check out storybook */
   npm run storybook
   npm run cov
   npm run test
 ```
+
 ## Stack
 - React & Redux
 - Redux Thunk
@@ -37,7 +48,9 @@ For the Readable project, you will build a content and comment web app. Users wi
 - Storybook - Interactive UI component
 
 ## Architecture
-...
+This application was built looking for the best abstraction possible of the functionalities, in order to facilitate the understanding and future maintenance.
+
+![](https://i.ibb.co/BtLqXJm/readableprintscreen.png)
 
 ## Author
 

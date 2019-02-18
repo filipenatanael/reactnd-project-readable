@@ -4,7 +4,10 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from '../reducers/index'
+import { MemoryRouter, withRouter } from 'react-router-dom';
 import NavbarHeader from '../components/NavbarHeader';
+
+const TNavbarHeader = withRouter(NavbarHeader);
 
 /* To enable Redux DevTools Extension */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -18,9 +21,12 @@ const store = createStore(reducer,
 );
 
 storiesOf('NavbarHeader', module)
-  .addDecorator(story => <Provider store={store}>{story()}</Provider>)
+  .addDecorator(story =>
+    <Provider store={store}>
+      <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
+    </Provider>)
   .add('passing headerTitle', () =>
-    <NavbarHeader
+    <TNavbarHeader
       headerTitle={'Reactnd Project Readable'}
       drawerWidth={drawerWidth}>
-    </NavbarHeader>);
+    </TNavbarHeader>);
