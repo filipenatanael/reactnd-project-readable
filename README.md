@@ -1,10 +1,10 @@
 <p align="center"><a href="https://in.udacity.com/course/react-nanodegree--nd019" target="_blank"><img width="180" src="https://www.wykop.pl/cdn/c3397993/link_SIrKotPCldE7IGnWEjOBSIX1SDMEhE1w,w300h223.jpg" alt="My Reads"></a></p>
 
 <p align="center">
-  <a href="https://travis-ci.org/filipenatanael/reactnd-myreads"><img src="https://travis-ci.org/filipenatanael/reactnd-myreads.svg?branch=master" alt="Build Status"></a>
-  <a class="badge-align" href="https://www.codacy.com/app/filipenatanael/reactnd-myreads?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=filipenatanael/reactnd-myreads&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/2bb969547aa240469a94a687746792e1"/></a>
+  <a href="https://travis-ci.org/filipenatanael/reactnd-project-readable"><img src="https://travis-ci.org/filipenatanael/reactnd-project-readable.svg?branch=master" alt="Build Status"></a>
+<a href="https://www.codacy.com/app/filipenatanael/reactnd-project-readable?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=filipenatanael/reactnd-project-readable&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/25c175ca537941768a94061e6a5b8783"/></a>
     <a class="badge-align" href="https://codecov.io/gh/filipenatanael/reactnd-project-readable/"><img src="https://codecov.io/gh/filipenatanael/reactnd-project-readable/branch/master/graph/badge.svg"/></a>
-  <a href="https://codeclimate.com/github/filipenatanael/reactnd-myreads/maintainability"><img src="https://api.codeclimate.com/v1/badges/b1553dba7581b75f1afc/maintainability" /></a>
+<a href="https://codeclimate.com/github/filipenatanael/reactnd-project-readable/maintainability"><img src="https://api.codeclimate.com/v1/badges/7bc593f5b7edc705a903/maintainability" /></a>
 </p>
 
 <h1 align="center">Readable Project - Udacity Nanodegree</h1>
@@ -17,6 +17,13 @@ For the Readable project, you will build a content and comment web app. Users wi
 <br>
 
 ![](https://i.ibb.co/gvKWBXg/storybook.gif)
+
+## Stack
+- React & Redux
+- Redux Thunk
+- Material UI
+- Jest & Enzime - Unit Testing
+- Storybook - Interactive UI component
 
 ## Running & StoryBook
 
@@ -39,13 +46,6 @@ If you do not know the [Storybook](https://github.com/storybooks/storybook), is 
   npm run cov
   npm run test
 ```
-
-## Stack
-- React & Redux
-- Redux Thunk
-- Material UI
-- Jest & Enzime - Unit Testing
-- Storybook - Interactive UI component
 
 ## Architecture
 This application was built looking for the best abstraction possible of the functionalities, in order to facilitate the understanding and future maintenance.
